@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Leaflet Web Map</title>
+        
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <style>
+            #map {
+                width: 960px;
+                height: 500px;
+            }
+            .custom .leaflet-popup-tip,
+            .custom .leaflet-popup-content-wrapper {
+            background: #e93434;
+            color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            var places = [
+            {
+                'title': 'London HackSpace',
+                'lat': '51.55393',
+                'long': '-0.2900229'
+            },
+            {
+                'title': 'South London Makerspace',
+                'lat': '51.45191',
+                'long': '-0.10089'
+            },
+            {
+                'title': 'Green Lab',
+                'lat': '51.4964885',
+                'long': '-0.0652312'
+            },
+            {
+                'title': 'Ravensbourne University',
+                'lat': '51.5014941',
+                'long': '0.0053044'
+            }];
+
+            var map = L.map('map', { scrollWheelZoom: false }).setView([51.5146, -0.0578], 10);
+
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            places.forEach(function(location){
+                L.marker([location.lat, location.long]).bindPopup(location.title).addTo(map);
+            });
+
+            //L.marker([51.55393, -0.2900229]).bindPopup('London Hackspace').addTo(map);
+            //L.marker([51.45191, -0.10089]).bindPopup('South London Makerspace').addTo(map);
+            //L.marker([51.4964885, -0.0652312]).bindPopup('Green Lab').addTo(map);
+        </script>
+    </body>
+</html>
